@@ -4,21 +4,47 @@ import { Bar } from 'react-chartjs-2';
 import { countriesArray } from "./../resources/countries.json";
 import { defaultDataSetProp, graphOptions, columnColors } from "./../resources/graphProps";
 import { toTitleCase } from "./../resources/helpers";
+import localStorage from "./../resources/localStorage";
+
+// load saved dropdown values
+const initialCountry = localStorage.getValue("selectedCountry");
+const initialState = localStorage.getValue("selectedState");
+const initialCity = localStorage.getValue("selectedCity");
 
 // default values for the dropdowns
-const countriesDefaultValues = countriesArray.map((country) => ({ value: country.code, label: country.name }));
-const statesDefaultValues = countriesArray[0].states.map((state) => ({ value: state.code, label: toTitleCase(state.name) }));
-const citiesDefaultValues = countriesArray[0].states[0].cities.map((city) => ({ value: city.name, label: city.name }));
+const getDefaultCountries = () =>  countriesArray.map((country) => ({ value: country.code, label: country.name }));
+const getDefaultStates = () => {
+    const mapState = (state) => ({ value: state.code, label: toTitleCase(state.name) });
+    if (initialCountry) { // retrieve saved states based on country
+        return countriesArray
+            .find((country) => country.code === initialCountry.value).states
+            .map(mapState);
+    } else { // default
+        return countriesArray[0].states.map(mapState);
+    }
+};
+
+const getDefaultCities = () => {
+    const mapCity = (city) => ({ value: city.name, label: city.name });
+    if (initialCountry && initialState) { // retrieve saved cityies based on state
+        return countriesArray
+            .find((country) => country.code === initialCountry.value).states
+            .find((state) => state.code === initialState.value).cities
+            .map(mapCity);
+    } else { // default
+        return countriesArray[0].states[0].cities.map(mapCity);
+    }
+};
 
 const Body = () => {
-    const [countries] = useState(countriesDefaultValues);
-    const [states, setStates] = useState(statesDefaultValues);
-    const [cities, setCities] = useState(citiesDefaultValues);
+    const [countries] = useState(getDefaultCountries());
+    const [states, setStates] = useState(getDefaultStates());
+    const [cities, setCities] = useState(getDefaultCities());
 
     // selected values
-    const [pickedCountry, setPickedCountry] = useState(countries[0]);
-    const [pickedState, setPickedState] = useState(states[0]);
-    const [pickedCity, setPickedCity] = useState(cities[0]);
+    const [pickedCountry, setPickedCountry] = useState(initialCountry || countries[0]);
+    const [pickedState, setPickedState] = useState(initialState || states[0]);
+    const [pickedCity, setPickedCity] = useState(initialCity || cities[0]);
 
     // states to be used on Bar graph
     const [graphData, setGraphData] = useState({
@@ -51,6 +77,7 @@ const Body = () => {
             .map((city) => ({ value: city.name, label: toTitleCase(city.name) }));
 
         setCities(cities);
+
         setPickedCity(cities[0]);
     };
 
@@ -81,8 +108,13 @@ const Body = () => {
             ...defaultDataSetProp,
         }];
 
+        // save selected values to local storage.
+        localStorage.save("selectedCountry", pickedCountry);
+        localStorage.save("selectedState", pickedState);
+        localStorage.save("selectedCity", pickedCity);
+
         setGraphData({ labels, datasets });
-    }
+    };
 
     useEffect(onChangeSelectedCity, [pickedCity]);
 
