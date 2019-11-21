@@ -109,4 +109,7 @@ body, p, h1, h2, html, div {
     color: #333;
     font-size: 13px;
     border-top: 1px rgba(0,0,0,0.2) solid;
+    .divider {
+        margin: 0 10px;
+    }
 }

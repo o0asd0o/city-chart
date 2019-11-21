@@ -1,7 +1,7 @@
 import React from "react";
 
 const Footer = () => (<div className="footer">
-    <p>All Rights Reserved (c) 2019</p>
+    <p>Created with <i className="fa fa-heart"></i> <span className="divider">|</span> by Jomel Ortega</p>
 </div>)
 
 export default Footer;

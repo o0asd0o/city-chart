@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
-import { Bar } from 'react-chartjs-2';
+import { Bar } from "react-chartjs-2";
 import { countriesArray } from "./../resources/countries.json";
 import { defaultDataSetProp, graphOptions, columnColors } from "./../resources/graphProps";
 import { toTitleCase } from "./../resources/helpers";
