@@ -391,10 +391,6 @@
                    {
                       "name":"Mobile",
                       "population":2558
-                   },
-                   {
-                      "name":"Jefferson",
-                      "population":27456
                    }
                 ]
             }, {
@@ -407,7 +403,7 @@
                    },
                    {
                       "name":"San Diego",
-                      "population":1301
+                      "population":630146
                    },
                    {
                       "name":"Santa Clara",
@@ -667,7 +663,7 @@
                 "cities": [
                    {
                       "name":"Whitehorse",
-                      "population":25085
+                      "population":5085
                    },
                    {
                       "name":"Carmacks",
@@ -751,9 +747,6 @@
                       "population":36088
                    }
                 ]
-            }, {
-                "code":"PE",
-                "name":"PRINCE EDWARD ISLAND"
             }, {
                 "code":"ON",
                 "name":"ONTARIO",
