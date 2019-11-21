@@ -1,0 +1,112 @@
+body, p, h1, h2, html, div {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: azure;
+}
+
+.body {
+    padding: 0 20px;
+    width: 100%;
+    margin-bottom: 100px;
+    max-width: 1020px;
+    margin-top: 100px;
+    .input-container {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        box-sizing: border-box;
+        margin-bottom: 25px;
+        align-items: center;
+        justify-content: center;
+        p.title {
+            margin-bottom: 25px;
+            font-size: 19px;
+        }
+        .dropdowns-container {
+            width: 100%;
+            display: flex;
+            .item {
+                width: 33.33%;
+                margin: 0 20px;
+                p {
+                    margin-bottom: 5px;
+                    font-size: 14px;
+                    color: #555;
+                }
+            }
+        }
+    }
+    .chart-container {
+        position: relative;
+        width: 100%;
+        background: white;
+        padding: 20px;
+        border: 1px rgba(1,87,155, 0.3) solid;
+        box-sizing: border-box;
+        box-shadow: 1px 1px 42px -25px rgba(0,0,0,0.3);
+        .y-label {
+            position: absolute;
+            top: 226px;
+            left: -103px;
+        }
+        .x-label {
+            position: absolute;
+            left: 448px;
+            bottom: -37px;
+        }
+    }
+}
+
+.header {
+    color: white;
+    width: 100%;
+    background: #333;
+    margin-bottom: 41px;
+    justify-content: center;
+    display: flex;
+    position: fixed;
+    z-index: 1000;
+    box-shadow: 0px 0px 6px 3px rgba(0,0,0,0.3);
+    .header-container {
+        color: white;
+        display: flex;
+        width: 100%;
+        max-width: 1200px;
+        padding: 10px 85px;
+        align-items: center;
+    }
+    h2 {
+        margin-right: auto;
+        font-weight: 100;
+        font-size: 22px;
+    }
+    button {
+        padding: 3px 45px;
+        line-height: 24px;
+        border-radius: 3px;
+        border: 1px white solid;
+        background: transparent;
+        color: white;
+        cursor: pointer;
+        font-size: 14px;
+    }
+}
+
+.footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 30px 0;
+    margin-top: 100px;
+    color: #333;
+    font-size: 13px;
+    border-top: 1px rgba(0,0,0,0.2) solid;
+}
